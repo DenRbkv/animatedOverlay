@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
+
 import 'package:overlay_manager_animated_test/animated_overlay/animated_overlay_dropdown/animated_overlay_dropdown.dart';
-
-import 'package:overlay_manager_animated_test/overlay_manager/overlay_manager.dart';
-
-import 'package:overlay_manager_animated_test/animated_overlay/animated_overlay_impl.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );
   }
@@ -26,55 +24,67 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  FocusNode focusNode;
+  FocusNode firstOverlayNode;
+  FocusNode secondOverlayNode;
 
   @override
   void initState() {
     super.initState();
-    focusNode = FocusNode();
+    firstOverlayNode = FocusNode();
+    secondOverlayNode = FocusNode();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            AnimatedOverlayDropdown(
-              uniqueId: '1',
-              dropdownHeader: Container(
-                width: 150.0,
-                height: 50.0,
-                color: Colors.green,
-              ),
-              dropdownContent: Container(
-                height: 100.0,
-                color: Colors.purple,
-              ),
-            ),
-            const SizedBox(height: 50.0),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Image.network(
-                    'https://s.dou.ua/CACHE/images/img/static/companies/instagram_avatar_logo2_XutENMb/7df5537c994312d5f2a2b2776be0c7b0.png'),
-                Text('Text in stack'),
+    return Material(
+      child: InkWell(
+        onTap: () {
+          firstOverlayNode.unfocus();
+          secondOverlayNode.unfocus();
+        },
+        focusColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        child: Scaffold(
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                AnimatedOverlayDropdown(
+                  uniqueId: '1',
+                  contentHeight: 300.0,
+                  focusNode: firstOverlayNode,
+                  dropdownHeader: Container(
+                    width: 150.0,
+                    height: 50.0,
+                    color: Colors.green,
+                  ),
+                  dropdownContent: ColoredBox(color: Colors.purple.withOpacity(0.3)),
+                ),
+                const SizedBox(height: 50.0),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Image.network(
+                        'https://s.dou.ua/CACHE/images/img/static/companies/instagram_avatar_logo2_XutENMb/7df5537c994312d5f2a2b2776be0c7b0.png'),
+                    Text('Text in stack'),
+                  ],
+                ),
+                const SizedBox(height: 50.0),
+                AnimatedOverlayDropdown(
+                  uniqueId: '2',
+                  contentHeight: 200.0,
+                  focusNode: secondOverlayNode,
+                  dropdownHeader: Container(
+                    width: 150.0,
+                    height: 50.0,
+                    color: Colors.yellow,
+                  ),
+                  dropdownContent: ColoredBox(color: Colors.red),
+                ),
               ],
             ),
-            AnimatedOverlayDropdown(
-              uniqueId: '2',
-              dropdownHeader: Container(
-                width: 150.0,
-                height: 50.0,
-                color: Colors.yellow,
-              ),
-              dropdownContent: Container(
-                height: 100.0,
-                color: Colors.red,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

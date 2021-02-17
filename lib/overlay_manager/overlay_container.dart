@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:overlay_manager_animated_test/overlay_manager/overlay_manager.dart' as om;
 
 typedef Widget OverlayChildBuilder(BuildContext context);
@@ -14,6 +15,10 @@ class OverlayContainer extends StatefulWidget {
   final FocusNode focusNode;
   final om.IOverlay overlay;
   final OverlayChildBuilder builder;
+
+  static final GlobalKey _gl = GlobalKey();
+
+  static BuildContext get getOverlayContext => _gl.currentContext;
 
   @override
   _OverlayContainerState createState() => _OverlayContainerState();
@@ -51,6 +56,7 @@ class _OverlayContainerState extends State<OverlayContainer> {
     _overlayEntry = OverlayEntry(
       builder: (BuildContext context) {
         return Positioned(
+          key: OverlayContainer._gl,
           width: size.width,
           child: CompositedTransformFollower(
             showWhenUnlinked: false,
