@@ -51,9 +51,9 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 AnimatedOverlayDropdown(
-                  uniqueId: '1',
+                  //uniqueId: '1',
                   contentHeight: 300.0,
-                  focusNode: firstOverlayNode,
+                  //focusNode: firstOverlayNode,
                   dropdownHeader: Container(
                     width: 150.0,
                     height: 50.0,
@@ -72,9 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 const SizedBox(height: 50.0),
                 AnimatedOverlayDropdown(
-                  uniqueId: '2',
+                  //uniqueId: '2',
                   contentHeight: 200.0,
-                  focusNode: secondOverlayNode,
+                  //focusNode: secondOverlayNode,
                   dropdownHeader: Container(
                     width: 150.0,
                     height: 50.0,

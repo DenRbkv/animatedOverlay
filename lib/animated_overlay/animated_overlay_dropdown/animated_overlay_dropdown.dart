@@ -17,7 +17,7 @@ class AnimatedOverlayDropdown extends StatefulWidget {
   final Duration animationDuration;
 
   const AnimatedOverlayDropdown({
-    @required this.uniqueId,
+    this.uniqueId,
     this.focusNode,
     this.contentHeight = 100.0,
     this.dropdownHeader = const SizedBox(),
