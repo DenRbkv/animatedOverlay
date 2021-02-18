@@ -58,9 +58,9 @@ class _AnimatedOverlayDropdownState extends State<AnimatedOverlayDropdown> {
     return InkWell(
       onTap: () {
         if (OverlayManager.instance.isOverlayCreated && !_focusNode.hasPrimaryFocus) {
-
+          print('$tag => <onTap> => Has existing overlay already');
           FocusScope.of(OverlayContainer.getOverlayContext).unfocus();
-          print('$tag => <onTap> => Dropdown switching delayed...');
+          print('$tag => <onTap> => Closing existing overlay...');
           Future.delayed(_switchDelay, _switchOverlay);
         } else {
           _switchOverlay();
@@ -83,15 +83,14 @@ class _AnimatedOverlayDropdownState extends State<AnimatedOverlayDropdown> {
 
   void _switchOverlay() {
     print('$tag => <_switchOverlay> => Switching dropdown...');
-    bool isOverlayCreated = OverlayManager.instance.isOverlayCreated;
-    print('$tag => <_switchOverlay> => Has active overlays already? - $isOverlayCreated');
+    final bool isCurrentOverlayOpened = _focusNode.hasPrimaryFocus;
 
-    if (isOverlayCreated) {
+    if (isCurrentOverlayOpened) {
       _focusNode.unfocus();
       print('$tag => <_switchOverlay> => Closing overlay...');
     }
 
-    if (!isOverlayCreated) {
+    if (!isCurrentOverlayOpened) {
       OverlayManager.instance.show(_uniqueId);
       _focusNode.requestFocus();
       print('$tag => <_switchOverlay> => Opening overlay...');

@@ -64,6 +64,7 @@ class _AnimatedOverlayWidgetState extends State<AnimatedOverlayWidget> with Sing
 
   @override
   void dispose() {
+    print('$tag => <dispose>');
     if (widget.focusNode != null && widget.focusNode.hasPrimaryFocus) {
       widget.focusNode.unfocus();
     }
