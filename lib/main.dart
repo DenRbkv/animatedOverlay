@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 AnimatedOverlayDropdown(
                   //uniqueId: '1',
                   contentHeight: 300.0,
-                  //focusNode: firstOverlayNode,
+                  focusNode: firstOverlayNode,
                   dropdownHeader: Container(
                     width: 150.0,
                     height: 50.0,
@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 AnimatedOverlayDropdown(
                   //uniqueId: '2',
                   contentHeight: 200.0,
-                  //focusNode: secondOverlayNode,
+                  focusNode: secondOverlayNode,
                   dropdownHeader: Container(
                     width: 150.0,
                     height: 50.0,
